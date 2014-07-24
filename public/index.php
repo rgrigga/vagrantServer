@@ -14,5 +14,10 @@
     Click apply/save</pre>
 		<h1><a href="/phpmyadmin">phpmyadmin</a></h1>
 		<p></p>
+
+        <h1>Hello!</h1>
+<?php
+include("install.php");
+?>
 	</body>
 </html>
