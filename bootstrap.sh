@@ -12,6 +12,11 @@ sudo apt-get update
 
 echo ">>> Installing Base Items"
 
+echo " Please don't be alarmed by any messages like this:"
+echo " ==> default: Creating config file /etc/php5/mods-available/mcrypt.ini with new version"
+echo " ==> default: php5_invoke: Enable module mcrypt for cli SAPI"
+echo " ==> default: php5_invoke: Enable module mcrypt for apache2 SAPI"
+
 # Install base items
 sudo apt-get install -y vim tmux curl wget build-essential python-software-properties
 
@@ -169,6 +174,19 @@ EOF
 
 sed -i "s@DocumentRoot /var/www/html@DocumentRoot /var/www/@g" /etc/apache2/sites-available/000-default.conf
 echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
+
+puppet apply manifests/default.pp
+
+#config phpmyadmin
+sed -i "s/^$dbuser=.*/$dbuser='root'/" /etc/phpmyadmin/config-db.php
+sed -i "s/^$dbpass=.*/$dbpass='root'/" /etc/phpmyadmin/config-db.php
+
+# Increase phpmyadmin upload sizes
+sed -i "s/upload_max_filesize =.*/upload_max_filesize = 20M/" /etc/php5/apache2/php.ini
+sed -i "s/memory_limit =.*/memory_limit = 256M/" /etc/php5/apache2/php.ini
+sed -i "s/post_max_size =.*/post_max_size = 20M/" /etc/php5/apache2/php.ini
+
+
 # Enable mod_rewrite
 a2enmod rewrite
 # Restart apache
@@ -176,7 +194,7 @@ service apache2 restart
 
 
 echo ">>> Finished Install Script bootstrap.sh"
-echo ">>> A FEW MORE THINGS:
+echo ">>> A FEW MORE THINGS:"
 echo " - be sure to add vivio.dev to your local /etc/hosts file!"
 echo " you might want to run 'puppet apply manifests/default.pp' or something like it"
 echo " - You may need to run sudo dpkg-reconfigure phpmyadmin after"
@@ -186,8 +204,9 @@ echo " CLEAR COOKIES AND CACHE "
 # vagrant up
 # vagrant ssh
 # cd /vagrant
-# sudo puppet apply manifests/default.pp
-# sudo service apache2 start
-# sudo dpkg-reconfigure phpmyadmin
-# add a user with
+puppet apply manifests/default.pp
+service apache2 start
+dpkg-reconfigure phpmyadmin
+# add a phpmyadmin user with % access, will need for mysqlworkbench
 # mysqladmin -proot reload
+
