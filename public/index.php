@@ -19,5 +19,6 @@
 <?php
 include("install.php");
 ?>
+
 	</body>
 </html>
