@@ -1,18 +1,22 @@
 # README #
 
 ## Prerequisites ##
-Vagrant
-Virtualbox
-Local ssh key (rsa)
+* Vagrant
+* Virtualbox
+* Local ssh key (rsa)
 
     ssh-keygen -t rsa
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## After Install ##
+
+### mysql ###
+### phpmyadmin ###
+* username: root
+* password: root
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
+* A VagrantFile, .sh script, and a few puppet scripts.
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###
