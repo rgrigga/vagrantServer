@@ -21,7 +21,10 @@
 
 ### How do I get set up? ###
 
-* Summary of set up
+    vagrant up
+    vagrant ssh
+    cd /vagrant
+
 * Configuration
 * Dependencies
 * Database configuration

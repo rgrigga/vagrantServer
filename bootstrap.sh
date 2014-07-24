@@ -182,9 +182,9 @@ sed -i "s/^$dbuser=.*/$dbuser='root'/" /etc/phpmyadmin/config-db.php
 sed -i "s/^$dbpass=.*/$dbpass='root'/" /etc/phpmyadmin/config-db.php
 
 # Increase phpmyadmin upload sizes
-sed -i "s/upload_max_filesize =.*/upload_max_filesize = 20M/" /etc/php5/apache2/php.ini
-sed -i "s/memory_limit =.*/memory_limit = 256M/" /etc/php5/apache2/php.ini
-sed -i "s/post_max_size =.*/post_max_size = 20M/" /etc/php5/apache2/php.ini
+sed -i "s/upload_max_filesize =.*/upload_max_filesize = 200M/" /etc/php5/apache2/php.ini
+sed -i "s/memory_limit =.*/memory_limit = 512M/" /etc/php5/apache2/php.ini
+sed -i "s/post_max_size =.*/post_max_size = 200M/" /etc/php5/apache2/php.ini
 
 
 # Enable mod_rewrite
@@ -208,5 +208,11 @@ puppet apply manifests/default.pp
 service apache2 start
 dpkg-reconfigure phpmyadmin
 # add a phpmyadmin user with % access, will need for mysqlworkbench
+
+# CREATE USER 'user'@'%' IDENTIFIED BY  '***';
+# GRANT ALL PRIVILEGES ON * . * TO  'user'@'%' IDENTIFIED BY  '***' WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+# GRANT ALL PRIVILEGES ON  `user\_%` . * TO  'user'@'%';
+
+# FLUSH PRIVLIGES
 # mysqladmin -proot reload
 
