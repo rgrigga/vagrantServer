@@ -168,6 +168,17 @@ VHOST=$(cat <<EOF
     </Directory>
 </VirtualHost>
 
+<VirtualHost *:80>
+    DocumentRoot /Code/cakephp
+    ServerName cake.dev
+    RewriteEngine On
+    <Directory "/Code/cakephp">
+      Options Indexes Includes FollowSymLinks MultiViews
+      AllowOverride All
+      Require all granted
+    </Directory>
+</VirtualHost>
+
 # Add more virtualhosts here
 EOF
 )
