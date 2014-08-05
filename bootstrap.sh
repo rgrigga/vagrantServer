@@ -130,12 +130,12 @@ VHOST=$(cat <<EOF
 </VirtualHost>
 
 <VirtualHost *:80>
-    DocumentRoot /viviosoft/agrivault
+    DocumentRoot /Code/viviosoft/agrivault
     ServerName local.agrivault.com
     ServerAlias ag.dev
     RewriteEngine On
 
-    <Directory "/viviosoft/agrivault">
+    <Directory "/Code/viviosoft/agrivault">
       Options Indexes Includes FollowSymLinks MultiViews
       AllowOverride All
       Require all granted
@@ -144,11 +144,11 @@ VHOST=$(cat <<EOF
 </VirtualHost>
 
 <VirtualHost *:80>
-    DocumentRoot /viviosoft/av2/public
+    DocumentRoot /Code/viviosoft/av2/public
     ServerName av2.dev
     RewriteEngine On
 
-    <Directory "/viviosoft/av2/public">
+    <Directory "/Code/viviosoft/av2/public">
       Options Indexes Includes FollowSymLinks MultiViews
       AllowOverride All
       Require all granted
@@ -157,11 +157,11 @@ VHOST=$(cat <<EOF
 </VirtualHost>
 
 <VirtualHost *:80>
-    DocumentRoot /viviosoft/vs
+    DocumentRoot /Code/viviosoft/vs
     ServerName local.vs2.com
     ServerAlias vs2.dev
     RewriteEngine On
-    <Directory "/viviosoft/vs">
+    <Directory "/Code/viviosoft/vs">
       Options Indexes Includes FollowSymLinks MultiViews
       AllowOverride All
       Require all granted
@@ -178,6 +178,19 @@ VHOST=$(cat <<EOF
       Require all granted
     </Directory>
 </VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot /Code/wosu
+    ServerName local.wosu.com
+    RewriteEngine On
+    <Directory "/Code/wosu">
+      Options Indexes Includes FollowSymLinks MultiViews
+      AllowOverride All
+      Require all granted
+    </Directory>
+</VirtualHost>
+
+
 
 # Add more virtualhosts here
 EOF
@@ -215,9 +228,12 @@ echo " CLEAR COOKIES AND CACHE "
 # vagrant up
 # vagrant ssh
 # cd /vagrant
-puppet apply manifests/default.pp
-service apache2 start
-dpkg-reconfigure phpmyadmin
+# sudo su
+
+# puppet apply manifests/default.pp
+# service apache2 start
+# dpkg-reconfigure phpmyadmin
+
 # add a phpmyadmin user with % access, will need for mysqlworkbench
 
 # CREATE USER 'user'@'%' IDENTIFIED BY  '***';

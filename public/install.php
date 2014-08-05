@@ -20,6 +20,11 @@
                 <div><code>git clone git:myrepo/myproject.git</code></div>
                 <div><code>vagrant up</code></div>
                 <div><code>vagrant ssh</code></div>
+                <div><code>cd /vagrant</code></div>
+                <div><code>sudo su</code></div>
+                <div><code>puppet apply manifests/default.php</code></div>
+                <div><code>service apache2 start</code></div>
+                <div><code>dpkg-reconfigure phpmyadmin</code></div>
                 <div class="onion">
                     <div class="badge">within the vm</div>
                     <div><code>cd /vagrant</code></div>
