@@ -9,6 +9,23 @@
 
 ## After Install ##
 
+    vagrant ssh
+    sudo puppet apply manifests/default.pp
+    sudo service apache2 start
+    
+
+on windows, edit
+
+    /c/Windows/System32/drivers/etc/hosts
+    
+on Linux/Mac, edit
+
+    /etc/hosts
+    
+Include a line like this:
+
+    192.168.50.99    vagrant.dev
+
 ### mysql ###
 ### phpmyadmin ###
 * username: root
