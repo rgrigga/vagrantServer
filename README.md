@@ -12,7 +12,7 @@
     vagrant ssh
     sudo puppet apply manifests/default.pp
     sudo service apache2 start
-    
+    sudo dpkg-reconfigure phpmyadmin
 
 on windows, edit
 
