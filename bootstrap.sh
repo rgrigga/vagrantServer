@@ -54,6 +54,9 @@ apt-get install -y libpcre3-dev
 apt-get install -y make
 apt-get install -y curl
 
+echo "fo nfs file support"
+apt-get install -y nfs-common portmap
+
 echo "--- Installing Composer ---"
 
 curl -s https://getcomposer.org/installer | php
@@ -206,9 +209,9 @@ sed -i "s/^$dbuser=.*/$dbuser='root'/" /etc/phpmyadmin/config-db.php
 sed -i "s/^$dbpass=.*/$dbpass='root'/" /etc/phpmyadmin/config-db.php
 
 # Increase phpmyadmin upload sizes
-sed -i "s/upload_max_filesize =.*/upload_max_filesize = 200M/" /etc/php5/apache2/php.ini
+sed -i "s/upload_max_filesize =.*/upload_max_filesize = 500M/" /etc/php5/apache2/php.ini
 sed -i "s/memory_limit =.*/memory_limit = 512M/" /etc/php5/apache2/php.ini
-sed -i "s/post_max_size =.*/post_max_size = 200M/" /etc/php5/apache2/php.ini
+sed -i "s/post_max_size =.*/post_max_size = 500M/" /etc/php5/apache2/php.ini
 
 
 # Enable mod_rewrite
