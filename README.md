@@ -1,5 +1,11 @@
 # README #
 
+You might call this package a "mini-clone" of Laravel Homestead... although it is not directly tied to Homestead.  let me explain:
+
+This package was created because I wanted to run laravel Homestead on several machines, one of which was a weak 32-bit windows machine.  At the time, Homestead would not work for me, apparently on 32-bit.  So I wrote my own vagrant file and puppet scripts... along with phpmyadmin and some other goodies, with the goal of replicating the functionality of Homestead.
+
+I have since moved on to using the "real" Homestead package, but I learned a lot from the process of digging into the guts of what's going on.  I am no longer maintaining or using this package, but it stands an example for reference regarding various principles, for better or for worse.
+
 ## Prerequisites ##
 * Vagrant
 * Virtualbox
